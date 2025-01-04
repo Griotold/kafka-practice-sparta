@@ -3,10 +3,10 @@ POST http://localhost:9999/orders
 Content-Type: application/json
 
 {
-  "productId": 2,
-  "quantity": 20,
-  "customerEmail": "test@gmail.com",
-  "totalPrice": 2000000
+  "productId": 101,
+  "quantity": 2002,
+  "customerEmail": "111test@gmail.com",
+  "totalPrice": 223
 }
 
 ### 주문 전체조회

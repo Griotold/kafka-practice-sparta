@@ -8,11 +8,15 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum OrderTopic {
-    // 주문 생성 이벤트(Order MSA가 발행)
+    // 주문 생성 이벤트 (Order MSA가 발행)
     ORDER_CREATED("order-created"),
 
     // 결제 완료 이벤트 (Payment MSA가 발행)
     PAYMENT_COMPLETED("payment-completed"),
+
+    // 주문 완료 이벤트 (Order MSA가 발행)
+    ORDER_COMPLETED("order-completed"),
+
     ;
     private final String topic;
 

@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -24,6 +26,7 @@ public class PaymentConsumer {
     /**
      * 주문 생성에 대한 이벤트 구독, 처리
      * */
+    @Transactional
     @KafkaListener(topics = "order-created")
     public void processPayment(String kafkaMessage) {
         log.info("processPayment.kafkaMessage =  {}", kafkaMessage);

@@ -4,11 +4,11 @@ import com.spartacoding.msa.payment.EventSerializer;
 import com.spartacoding.msa.payment.events.PaymentSuccessEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Component;
 
 @Slf4j
-@Configuration
+@Component
 @RequiredArgsConstructor
 public class PaymentProducer {
     private final KafkaTemplate<String, String> kafkaTemplate;
@@ -16,6 +16,6 @@ public class PaymentProducer {
     public void send(String topic, PaymentSuccessEvent event) {
         String eventToJson = EventSerializer.serialize(event);
         kafkaTemplate.send(topic, eventToJson);
-        log.info("Payment Producer Sent payment event: " + eventToJson);
+        log.info("PaymentProducer Sent PaymentSuccessEvent: " + eventToJson);
     }
 }

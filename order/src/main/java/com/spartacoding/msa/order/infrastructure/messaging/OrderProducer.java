@@ -1,6 +1,7 @@
 package com.spartacoding.msa.order.infrastructure.messaging;
 
 import com.spartacoding.msa.order.EventSerializer;
+import com.spartacoding.msa.order.events.OrderCompletedEvent;
 import com.spartacoding.msa.order.events.OrderCreatedEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,9 +34,16 @@ public class OrderProducer {
 
         String eventToJson = EventSerializer.serialize(event);
         kafkaTemplate.send(topic, eventToJson);
-        log.info("Order Producer Sent order event: " + event);
+        log.info("OrderProducer Sent OrderCreatedEvent: " + event);
 
         return event;
+    }
+
+    public void send(String topic, OrderCompletedEvent event) {
+
+        String eventToJson = EventSerializer.serialize(event);
+        kafkaTemplate.send(topic, eventToJson);
+        log.info("OrderProducer Sent OrderCompletedEvent: " + event);
     }
 
     /**

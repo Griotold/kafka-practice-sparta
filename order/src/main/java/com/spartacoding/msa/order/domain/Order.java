@@ -39,4 +39,8 @@ public class Order {
                 .totalPrice(totalPrice)
                 .build();
     }
+
+    public void updateStatus(OrderStatus orderStatus) {
+        this.status = orderStatus;
+    }
 }
