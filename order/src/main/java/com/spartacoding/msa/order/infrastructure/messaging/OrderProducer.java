@@ -32,7 +32,7 @@ public class OrderProducer {
     public OrderCreatedEvent send(String topic, OrderCreatedEvent event) {
 
         String eventToJson = EventSerializer.serialize(event);
-        kafkaTemplate.send(topic, event.toString());
+        kafkaTemplate.send(topic, eventToJson);
         log.info("Order Producer Sent order event: " + event);
 
         return event;
