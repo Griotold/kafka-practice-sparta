@@ -1,6 +1,8 @@
 package com.spartacoding.msa.order.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +10,8 @@ import java.math.BigDecimal;
 
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "orders")
 public class Order {
@@ -26,11 +30,13 @@ public class Order {
     private String customerEmail;
     private BigDecimal totalPrice;
 
-    public Order(String productId, int quantity, String customerEmail, BigDecimal totalPrice) {
-        this.productId = productId;
-        this.quantity = quantity;
-        this.status = OrderStatus.CREATED;
-        this.customerEmail = customerEmail;
-        this.totalPrice = totalPrice;
+    public static Order create(String productId, int quantity, OrderStatus status, String customerEmail, BigDecimal totalPrice) {
+        return Order.builder()
+                .productId(productId)
+                .quantity(quantity)
+                .status(status)
+                .customerEmail(customerEmail)
+                .totalPrice(totalPrice)
+                .build();
     }
 }
